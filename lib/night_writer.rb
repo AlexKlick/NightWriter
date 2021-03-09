@@ -6,7 +6,6 @@ class NightWriter
   def initialize(input_file, output_file)
     @output_file = output_file
     @dictionary = Hash.new
-    require 'pry'; binding.pry
     create_dictionary #builds the hash of letter objects
     file_reader(input_file) #method to parse the file, sending back @array (nested array of letters) and @message_length (int)
     create_braile_array
