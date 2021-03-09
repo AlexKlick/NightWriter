@@ -20,7 +20,8 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_create_braile_array
-    assert_equal @nightWriter.create_braile_array,[["0.0.0.0.0....00.0.0.00", "00.00.0..0..00.0000..0", "....0.0.0....00.0.0..."],
+    @nightWriter.create_braile_array
+    assert_equal @nightWriter.braile_array,[["0.0.0.0.0....00.0.0.00", "00.00.0..0..00.0000..0", "....0.0.0....00.0.0..."],
     ["000.0.000.000....00.0.0.00", "00.0.0.0...0.0..00.0000..0", "..0.0.....00.....00.0.0..."]]
   end
   

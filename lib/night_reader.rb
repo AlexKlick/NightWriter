@@ -1,8 +1,11 @@
 require './lib/letter'
 
 class NightReader
+
+  attr_reader :reverse_dictionary, :dictionary
   def initialize(input_file, output_file)
     @output_file = output_file
+    @input_file = input_file
     create_dictionary
     file_reader(input_file)
     reverse_key_vals
@@ -20,7 +23,7 @@ class NightReader
     }
     @message_length = @array.join('').length / 6
     file.close
-    return @array
+    @array
   end
 
   def create_dictionary
@@ -41,7 +44,6 @@ class NightReader
       i % 3 == 0  ? line.each_with_index do |digit, j|
         if j < line.length - 1 && j % 2 == 0
           @letters << [@array[i][j..j+1],@array[i+1][j..j+1], @array[i+2][j..j+1]]
-          p [@array[i][j..j+1],@array[i+1][j..j+1], @array[i+2][j..j+1]]
         end 
       end : nil
     end
@@ -65,4 +67,10 @@ class NightReader
   end
 end
 
-NightReader.new(ARGV[0], ARGV[1])
+if ARGV[0] != nil && ARGV[1] != nil
+  NightReader.new(ARGV[0], ARGV[1])
+elsif ARGV[0] == nil
+  puts 'we need a readable file'
+elsif ARGV[1] == nil
+  puts 'please designate a file to save to'
+end

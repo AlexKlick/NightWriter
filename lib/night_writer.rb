@@ -2,10 +2,11 @@ require './lib/letter'
 
 class NightWriter
 
-  attr_reader :dictionary
+  attr_reader :dictionary, :braile_array
   def initialize(input_file, output_file)
     @output_file = output_file
     @dictionary = Hash.new
+    require 'pry'; binding.pry
     create_dictionary #builds the hash of letter objects
     file_reader(input_file) #method to parse the file, sending back @array (nested array of letters) and @message_length (int)
     create_braile_array
@@ -27,7 +28,7 @@ class NightWriter
     }
     @message_length = @array.join('').length
     file.close
-    return @array
+    @array
   end
 
   def create_braile_array
